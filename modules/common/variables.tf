@@ -58,6 +58,18 @@ variable "workload_keys" {
   default     = []
 }
 
+variable "artifact_registry_keys" {
+  description = "List of artifact registry keys to generate names for."
+  type        = list(string)
+  default     = []
+}
+
+variable "secret_keys" {
+  description = "List of secret keys to generate names for."
+  type        = list(string)
+  default     = []
+}
+
 variable "state_registry_prefix" {
   description = "The GCS prefix used for the cross-repo outputs registry."
   type        = string

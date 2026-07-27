@@ -46,6 +46,14 @@ locals {
       }
     }
 
+    artifact_registries = {
+      for key in var.artifact_registry_keys : key => join(local.sep.hyphen, [local.resource_type_token.artifact_registry, key, local.resource_identifier])
+    }
+
+    secrets = {
+      for key in var.secret_keys : key => join(local.sep.hyphen, [local.resource_type_token.secret_manager, key, local.resource_identifier])
+    }
+
     # Cross-Repo Registry Path
     # Generates: "registry/dev/v1/outputs.json"
     state_outputs_registry_path = join(local.sep.slash, [
