@@ -22,15 +22,17 @@ Example:
       "attribute.actor"      = "assertion.actor"
       "attribute.repository" = "assertion.repository"
     }
+    attribute_condition = "assertion.repository_owner == 'B-Nockk'"
     sa_bindings = {
       "attribute.repository/B-Nockk/apps-monorepo" = ["app", "web"]
     }
   }
 EOF
   type = map(object({
-    issuer_uri        = string
-    attribute_mapping = map(string)
-    sa_bindings       = map(list(string))
+    issuer_uri          = string
+    attribute_mapping   = map(string)
+    attribute_condition = string
+    sa_bindings         = map(list(string))
   }))
   default = {}
 }

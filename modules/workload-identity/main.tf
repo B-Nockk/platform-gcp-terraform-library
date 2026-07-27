@@ -24,7 +24,8 @@ resource "google_iam_workload_identity_pool_provider" "this" {
   workload_identity_pool_provider_id = var.resource_computed_names.workload_identity_providers[each.key]
   display_name                       = "WIF Provider: ${each.key}"
 
-  attribute_mapping = each.value.attribute_mapping
+  attribute_mapping   = each.value.attribute_mapping
+  attribute_condition = each.value.attribute_condition != "" ? each.value.attribute_condition : null
 
   oidc {
     issuer_uri = each.value.issuer_uri
