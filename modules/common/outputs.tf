@@ -1,8 +1,7 @@
 # terraform/modules/common/outputs.tf
 
-output "required_apis" {
-  description = "Master list of APIs required across the GCP landing zone"
-  value = [
+locals {
+  core_apis = [
     "iam.googleapis.com",
     "compute.googleapis.com",
     "orgpolicy.googleapis.com",
@@ -10,6 +9,11 @@ output "required_apis" {
     "logging.googleapis.com",
     "oslogin.googleapis.com"
   ]
+}
+
+output "required_apis" {
+  description = "Master list of APIs required across the GCP landing zone (core + additional)"
+  value       = setunion(local.core_apis, toset(var.additional_apis))
 }
 
 output "common_tags" {

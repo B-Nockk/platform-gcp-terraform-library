@@ -75,6 +75,12 @@ variable "state_registry_prefix" {
   type        = string
 }
 
+variable "additional_apis" {
+  description = "List of additional APIs to enable for specific stacks."
+  type        = list(string)
+  default     = []
+}
+
 variable "state_bucket_prefix" {
   description = "The state bucket prefix used to construct the bucket name"
   type        = string
