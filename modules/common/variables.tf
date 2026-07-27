@@ -70,6 +70,30 @@ variable "secret_keys" {
   default     = []
 }
 
+variable "wif_provider_keys" {
+  description = "List of workload identity provider keys."
+  type        = list(string)
+  default     = []
+}
+
+variable "cloud_sql_keys" {
+  description = "List of cloud sql keys."
+  type        = list(string)
+  default     = []
+}
+
+variable "redis_keys" {
+  description = "List of redis keys."
+  type        = list(string)
+  default     = []
+}
+
+variable "filestore_keys" {
+  description = "List of filestore keys."
+  type        = list(string)
+  default     = []
+}
+
 variable "state_registry_prefix" {
   description = "The GCS prefix used for the cross-repo outputs registry."
   type        = string

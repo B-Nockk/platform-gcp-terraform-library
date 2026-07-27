@@ -54,6 +54,24 @@ locals {
       for key in var.secret_keys : key => join(local.sep.hyphen, [local.resource_type_token.secret_manager, key, local.resource_identifier])
     }
 
+    workload_identity_pool = join(local.sep.hyphen, [local.resource_type_token.workload_identity_pool, local.resource_identifier])
+
+    workload_identity_providers = {
+      for key in var.wif_provider_keys : key => join(local.sep.hyphen, [local.resource_type_token.workload_identity_provider, key, local.resource_identifier])
+    }
+
+    cloud_sql_instances = {
+      for key in var.cloud_sql_keys : key => join(local.sep.hyphen, [local.resource_type_token.cloud_sql, key, local.resource_identifier])
+    }
+
+    redis_instances = {
+      for key in var.redis_keys : key => join(local.sep.hyphen, [local.resource_type_token.memorystore_redis, key, local.resource_identifier])
+    }
+
+    filestore_instances = {
+      for key in var.filestore_keys : key => join(local.sep.hyphen, [local.resource_type_token.filestore, key, local.resource_identifier])
+    }
+
     # Cross-Repo Registry Path
     # Generates: "registry/dev/v1/outputs.json"
     state_outputs_registry_path = join(local.sep.slash, [

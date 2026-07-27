@@ -25,8 +25,10 @@ locals {
     internal_ip_address = "iip"
 
     # --- Identity & Security ---
-    service_account = "sa"
-    secret_manager  = "sm"
+    service_account            = "sa"
+    secret_manager             = "sm"
+    workload_identity_pool     = "wifp"
+    workload_identity_provider = "wifpr"
 
     # --- Compute & Storage ---
     compute_instance       = "vm"
@@ -35,6 +37,7 @@ locals {
     persistent_disk        = "pd"
     storage_bucket         = "bkt"
     health_check           = "hc"
+    filestore              = "fs"
 
     # --- Databases & Data ---
     cloud_sql         = "sql"
