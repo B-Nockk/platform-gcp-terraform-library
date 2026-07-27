@@ -58,6 +58,10 @@ variable "vpcs" {
       next_hop      = string
       target_tags   = list(string)
     }))
+
+    psa_config = optional(object({
+      prefix_length = number
+    }))
   }))
 
   validation {

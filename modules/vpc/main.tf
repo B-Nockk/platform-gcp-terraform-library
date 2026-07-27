@@ -56,3 +56,28 @@ resource "google_compute_route" "this" {
 
   tags = each.value.target_tags
 }
+
+# ============================== ==============================
+# 4. Private Services Access (PSA)
+# ============================== ==============================
+resource "google_compute_global_address" "psa" {
+  for_each = {
+    for k, v in var.vpcs : k => v
+    if try(v.psa_config, null) != null
+  }
+
+  name          = "${var.resource_computed_names.vpcs[each.key].name}-psa"
+  project       = var.project_id
+  purpose       = "VPC_PEERING"
+  address_type  = "INTERNAL"
+  prefix_length = each.value.psa_config.prefix_length
+  network       = google_compute_network.this[each.key].id
+}
+
+resource "google_service_networking_connection" "psa" {
+  for_each = google_compute_global_address.psa
+
+  network                 = google_compute_network.this[each.key].id
+  service                 = "servicenetworking.googleapis.com"
+  reserved_peering_ranges = [each.value.name]
+}
