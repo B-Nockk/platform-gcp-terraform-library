@@ -94,6 +94,36 @@ variable "filestore_keys" {
   default     = []
 }
 
+variable "edge_backend_keys" {
+  description = "List of Edge backend service keys."
+  type        = list(string)
+  default     = []
+}
+
+variable "edge_ssl_keys" {
+  description = "List of Edge SSL certificate keys."
+  type        = list(string)
+  default     = []
+}
+
+variable "edge_waf_keys" {
+  description = "List of Edge Cloud Armor WAF keys."
+  type        = list(string)
+  default     = []
+}
+
+variable "dashboard_keys" {
+  description = "List of Observability Dashboard keys."
+  type        = list(string)
+  default     = []
+}
+
+variable "log_sink_keys" {
+  description = "List of Observability Log Sink keys."
+  type        = list(string)
+  default     = []
+}
+
 variable "state_registry_prefix" {
   description = "The GCS prefix used for the cross-repo outputs registry."
   type        = string

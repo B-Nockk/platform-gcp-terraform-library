@@ -72,6 +72,33 @@ locals {
       for key in var.filestore_keys : key => join(local.sep.hyphen, [local.resource_type_token.filestore, key, local.resource_identifier])
     }
 
+    edge_backends = {
+      for key in var.edge_backend_keys : key => join(local.sep.hyphen, [local.resource_type_token.backend_service, key, local.resource_identifier])
+    }
+
+    edge_ssl_certs = {
+      for key in var.edge_ssl_keys : key => join(local.sep.hyphen, [local.resource_type_token.ssl_certificate, key, local.resource_identifier])
+    }
+
+    edge_waf_policies = {
+      for key in var.edge_waf_keys : key => join(local.sep.hyphen, [local.resource_type_token.security_policy, key, local.resource_identifier])
+    }
+
+    # Load Balancer Components (usually singular per stack, but we can parameterize or use simple prefix)
+    edge_lb = {
+      forwarding_rule = join(local.sep.hyphen, [local.resource_type_token.forwarding_rule, local.resource_identifier])
+      target_proxy    = join(local.sep.hyphen, [local.resource_type_token.target_proxy, local.resource_identifier])
+      url_map         = join(local.sep.hyphen, [local.resource_type_token.url_map, local.resource_identifier])
+    }
+
+    dashboards = {
+      for key in var.dashboard_keys : key => join(local.sep.hyphen, [local.resource_type_token.monitoring_dashboard, key, local.resource_identifier])
+    }
+
+    log_sinks = {
+      for key in var.log_sink_keys : key => join(local.sep.hyphen, [local.resource_type_token.log_sink, key, local.resource_identifier])
+    }
+
     # Cross-Repo Registry Path
     # Generates: "registry/dev/v1/outputs.json"
     state_outputs_registry_path = join(local.sep.slash, [

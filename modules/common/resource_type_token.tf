@@ -51,10 +51,16 @@ locals {
     logging_bucket       = "log"
     monitoring_dashboard = "dash"
     alert_policy         = "alt"
+    log_sink             = "sink"
 
-    # --- Load Balancing ---
-    # Note: GCP LBs are distributed. You usually name the Forwarding Rule or Backend Service.
-    load_balancer = "lb"
+    # --- Load Balancing & Edge ---
+    load_balancer   = "lb"
+    forwarding_rule = "fwd"
+    target_proxy    = "tproxy"
+    url_map         = "urlmap"
+    backend_service = "bes"
+    ssl_certificate = "ssl"
+    security_policy = "waf"
   }
 
   # Optional: If you want to keep the prefix logic here instead of in main.tf
