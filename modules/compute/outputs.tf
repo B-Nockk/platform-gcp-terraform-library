@@ -23,7 +23,7 @@ output "instance_group_manager_ids" {
 
 output "instance_group_self_links" {
   description = "Map of compute fleet keys to their MIG self_links. (Crucial for wiring to Load Balancer Backend Services)."
-  value       = { for k, v in google_compute_region_instance_group_manager.this : k => v.self_link }
+  value       = { for k, v in google_compute_region_instance_group_manager.this : k => v.instance_group }
 }
 
 # ============================== ==============================
