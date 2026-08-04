@@ -63,6 +63,8 @@ variable "workloads" {
         type  = string
       })
 
+      metadata_startup_script = optional(string)
+
       health_check = object({
         port         = number
         request_path = string

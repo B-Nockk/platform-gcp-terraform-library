@@ -38,6 +38,8 @@ resource "google_compute_instance_template" "this" {
     boot         = true
   }
 
+  metadata_startup_script = each.value.metadata_startup_script
+
   network_interface {
     # Resolves to "primary-private_subnet" etc. If it doesn't exist, Terraform fails
     # fast — no silent fallbacks.
